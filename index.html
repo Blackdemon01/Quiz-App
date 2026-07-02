@@ -53,11 +53,28 @@ background:#003f87;
 
 <p>Practice WAEC, JAMB and Post-UTME questions.</p>
 
-<button onclick="alert('Coming in Phase 2!')">
+<input
+id="studentName"
+type="text"
+placeholder="Enter your name"
+style="width:80%;padding:12px;font-size:16px;border-radius:8px;border:1px solid #ccc;">
+
+<br><br>
+
+<button onclick="startQuiz()">
 Start Quiz
 </button>
 
-</div>
+<script>
+function startQuiz(){
 
-</body>
-</html>
+let name=document.getElementById("studentName").value;
+
+if(name==""){
+alert("Please enter your name.");
+return;
+}
+
+alert("Welcome "+name+"! Get ready for your quiz.");
+}
+</script>
