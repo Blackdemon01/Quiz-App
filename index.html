@@ -1,115 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Quiz App</title>
 
-<style>
-
-body{
-font-family:Arial,sans-serif;
-background:#f4f8ff;
-margin:0;
-padding:0;
-text-align:center;
-}
-
-header{
-background:#003366;
-color:white;
-padding:25px;
-}
-
-.container{
-padding:30px;
-}
-
-input,select{
-width:80%;
-padding:12px;
-font-size:16px;
-border-radius:8px;
-border:1px solid #ccc;
-margin-top:15px;
-}
-
-button{
-background:#0057b8;
-color:white;
-border:none;
-padding:15px 30px;
-font-size:18px;
-border-radius:10px;
-cursor:pointer;
-margin-top:20px;
-}
-
-button:hover{
-background:#003f87;
-}
-
-#quiz{
-display:none;
-margin-top:30px;
-}
-
-.option{
-display:block;
-width:90%;
-margin:10px auto;
-padding:15px;
-background:white;
-border:1px solid #ccc;
-border-radius:10px;
-cursor:pointer;
-}
-
-.option:hover{
-background:#dce8ff;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<header>
-
-<h1>📚 Quiz App</h1>
-
-<p>Practice WAEC, JAMB & Post UTME</p>
-
-</header>
-
 <div class="container">
 
-<h2>Welcome</h2>
+<h1>🎓 CBT Quiz App</h1>
 
-<p>Enter your details to begin.</p>
+<p class="subtitle">
+
+Practice WAEC • JAMB • Post UTME
+
+</p>
+
+<div id="home">
 
 <input
-id="studentName"
 type="text"
-placeholder="Enter your Name">
+id="studentName"
+placeholder="Enter Your Name">
 
 <select id="subject">
 
 <option value="">Select Subject</option>
 
-<option>Mathematics</option>
+<option value="math">Mathematics</option>
 
-<option>English Language</option>
+<option value="english">English Language</option>
 
-<option>Physics</option>
+<option value="physics">Physics</option>
 
-<option>Chemistry</option>
+<option value="chemistry">Chemistry</option>
 
-<option>Biology</option>
+<option value="biology">Biology</option>
 
-<option>Government</option>
+</select>
+
+<button onclick="startQuiz()">
+
+Start Quiz
+
+</button>
+
+</div>
+
+<div id="quiz" style="display:none;">
+
+<h2 id="subjectTitle"></h2>
+
+<p id="counter"></p>
+
+<h3 id="question"></h3>
+
+<div id="options"></div>
+
+<button id="nextBtn" onclick="nextQuestion()">
+
+Next Question
+
+</button>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html><option>Government</option>
 
 <option>Economics</option>
 
