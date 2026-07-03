@@ -3,13 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Quiz App</title>
 
 <style>
+
 body{
 font-family:Arial,sans-serif;
 background:#f4f8ff;
 margin:0;
+padding:0;
 text-align:center;
 }
 
@@ -21,6 +24,15 @@ padding:25px;
 
 .container{
 padding:30px;
+}
+
+input,select{
+width:80%;
+padding:12px;
+font-size:16px;
+border-radius:8px;
+border:1px solid #ccc;
+margin-top:15px;
 }
 
 button{
@@ -37,48 +49,189 @@ margin-top:20px;
 button:hover{
 background:#003f87;
 }
+
+#quiz{
+display:none;
+margin-top:30px;
+}
+
+.option{
+display:block;
+width:90%;
+margin:10px auto;
+padding:15px;
+background:white;
+border:1px solid #ccc;
+border-radius:10px;
+cursor:pointer;
+}
+
+.option:hover{
+background:#dce8ff;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <header>
+
 <h1>📚 Quiz App</h1>
-<p>Test Your Knowledge</p>
+
+<p>Practice WAEC, JAMB & Post UTME</p>
+
 </header>
 
 <div class="container">
 
-<h2>Welcome!</h2>
+<h2>Welcome</h2>
 
-<p>Practice WAEC, JAMB and Post-UTME questions.</p>
+<p>Enter your details to begin.</p>
 
 <input
 id="studentName"
 type="text"
-placeholder="Enter your name"
-style="width:80%;padding:12px;font-size:16px;border-radius:8px;border:1px solid #ccc;">
+placeholder="Enter your Name">
 
-<br><br>
+<select id="subject">
+
+<option value="">Select Subject</option>
+
+<option>Mathematics</option>
+
+<option>English Language</option>
+
+<option>Physics</option>
+
+<option>Chemistry</option>
+
+<option>Biology</option>
+
+<option>Government</option>
+
+<option>Economics</option>
+
+<option>Geography</option>
+
+</select>
+
+<br>
 
 <button onclick="startQuiz()">
+
 Start Quiz
+
 </button>
 
+<div id="quiz">
+
+<h2 id="question"></h2>
+
+<button class="option" onclick="answer(0)" id="op0"></button>
+
+<button class="option" onclick="answer(1)" id="op1"></button><button class="option" onclick="answer(2)" id="op2"></button>
+
+<button class="option" onclick="answer(3)" id="op3"></button>
+
+<p id="score"></p>
+
+</div>
+
 <script>
+
+let questions=[
+{
+question:"What is 2 + 2 ?",
+options:["3","4","5","6"],
+correct:1
+},
+{
+question:"Capital of Nigeria?",
+options:["Abuja","Lagos","Kano","Ibadan"],
+correct:0
+},
+{
+question:"5 × 6 = ?",
+options:["25","30","35","40"],
+correct:1
+},
+{
+question:"HTML stands for?",
+options:[
+"Hyper Text Markup Language",
+"Home Tool Markup Language",
+"High Text Machine Language",
+"Hyper Transfer Markup Language"
+],
+correct:0
+},
+{
+question:"Which planet is called the Red Planet?",
+options:["Earth","Mars","Venus","Jupiter"],
+correct:1
+}
+];
+
+let current=0;
+let score=0;
+
 function startQuiz(){
 
 let name=document.getElementById("studentName").value;
 
-if(name==""){
-alert("Please enter your name.");
+let subject=document.getElementById("subject").value;
+
+if(name=="" || subject==""){
+alert("Please enter your name and select a subject.");
 return;
 }
 
-alert("Welcome "+name+"! Get ready for your quiz.");
+document.getElementById("quiz").style.display="block";
+
+loadQuestion();
 }
+
+function loadQuestion(){
+
+document.getElementById("question").innerHTML=questions[current].question;
+
+for(let i=0;i<4;i++){
+
+document.getElementById("op"+i).innerHTML=questions[current].options[i];
+
+}
+
+}function answer(choice){
+
+if(choice==questions[current].correct){
+
+score++;
+
+}
+
+current++;
+
+if(current<questions.length){
+
+loadQuestion();
+
+}else{
+
+document.getElementById("quiz").innerHTML=
+"<h2>Quiz Completed!</h2>"+
+"<h3>Your Score: "+score+" / "+questions.length+"</h3>"+
+"<p>Thanks for taking the quiz.</p>";
+
+}
+
+}
+
 </script>
+
 </div>
 
 </body>
+
 </html>
