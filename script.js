@@ -28,6 +28,10 @@ function showQuestion() {
 
   document.getElementById("counter").innerHTML =
     "Question " + (current + 1) + " of " + questions.length;
+  let percent=((current+1)/questions.length)*100;
+
+document.getElementById("progressBar").style.width=
+percent+"%";
 
   document.getElementById("question").innerHTML =
     questions[current].question;
