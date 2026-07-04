@@ -25,6 +25,7 @@ function startQuiz() {
     subject.toUpperCase() + " QUIZ";
 
   showQuestion();
+  startTimer();
 }
 
 function showQuestion() {
