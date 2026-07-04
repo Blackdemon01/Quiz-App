@@ -1,6 +1,9 @@
 let questions = [];
 let current = 0;
 let score = 0;
+
+let timeLeft = 1200;
+let timer;
 function startQuiz() {
 
   const name = document.getElementById("studentName").value.trim();
