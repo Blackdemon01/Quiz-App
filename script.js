@@ -80,3 +80,35 @@ function nextQuestion() {
 
   showQuestion();
 }
+function startTimer(){
+
+timer = setInterval(function(){
+
+timeLeft--;
+
+let minutes = Math.floor(timeLeft / 60);
+
+let seconds = timeLeft % 60;
+
+if(seconds < 10){
+seconds = "0" + seconds;
+}
+
+document.getElementById("timer").innerHTML =
+"⏰ Time Left: " + minutes + ":" + seconds;
+
+if(timeLeft <= 0){
+
+clearInterval(timer);
+
+document.getElementById("quiz").innerHTML = `
+<h2>Time Up!</h2>
+<h3>Your Score: ${score}/${questions.length}</h3>
+<button onclick="location.reload()">Restart Quiz</button>
+`;
+
+}
+
+},1000);
+
+}
